@@ -1,8 +1,9 @@
 const path = require("path");
+var webpack = require('webpack');
 
 module.exports = {
   mode: "development",
-  entry: "./index.js",
+  entry: path.resolve(__dirname, "./src/index.js"),
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "main.js"
@@ -26,5 +27,6 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 }
