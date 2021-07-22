@@ -1,0 +1,43 @@
+.button {
+    align-items: center;
+    background: #333;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    font-size: 45px;
+    height: 110px;
+    justify-content: center;
+    width: 110px;
+    transition: filter 0.3s ease-in;
+}
+
+.button:hover {
+    filter: brightness(130%);
+}
+
+.button:active {
+    filter: brightness(200%);
+    transform: scale(0.95);
+}
+
+.button.zero {
+    width: 210px;
+    grid-column: 1 / span 2;
+    border-radius: 57.5px;
+    position: relative;
+    justify-content: flex-start;
+    padding-left: 43px;
+}
+
+.button.nothing {
+    all: unset;
+}
+
+.button.function {
+    color: #000;
+    background: #a6a6a6;
+}
+
+.button.operation {
+    background: #ff9501;
+}

@@ -1,0 +1,23 @@
+.calculator {
+    background: #000;
+    border-radius: 50px;
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    width: 563px;
+}
+
+.display {
+    font-size: 130px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.buttons {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+

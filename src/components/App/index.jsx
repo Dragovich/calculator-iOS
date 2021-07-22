@@ -7,10 +7,10 @@ export const Calculator = () => {
   const [value, setValue] = useState("0");
   const [memory, setMemory] = useState(null);
   const [operator, setOperator] = useState(null);
-  const [history, setHistory] = useState("")
+  const [history, setHistory] = useState(" ")
 
   const handleHistory = (operator, value, initValue) => {
-    if (history === "") {
+    if (history === " ") {
       setHistory(initValue + " " + operator + " " + value);
     } else {
       setHistory(history + " " + operator + " " + value);
@@ -20,234 +20,63 @@ export const Calculator = () => {
   const handleButtonPress = content => () => {
     const number = parseFloat(value);
 
-    if (content === "AC") {
-      setValue("0");
-      setMemory(null);
-      setOperator(null);
-      setHistory(null);
-      return;
-    }
-
-    if (content === "±") {
-      setValue((-number).toString());
-      setHistory(-number);
-      return;
-    }
-
-    if (content === "÷") {
-      if (operator !== null) {
+    switch (content) {
+      case "AC": {
+        setValue("0");
+        setMemory(null);
+        setOperator(null);
+        setHistory(null);
+        return;
+      }
+      case "±": {
+        setValue((-number).toString());
+        setHistory(-number);
+        return;
+      }
+      case "÷":
+      case "×":
+      case "−":
+      case "+": {
+        if (operator !== null) {
+          if (operator === "+") {
+            setMemory(memory + parseFloat(value));
+          } else if (operator === "−") {
+            setMemory(memory - parseFloat(value));
+          } else if (operator === "×") {
+            setMemory(memory * parseFloat(value));
+          } else if (operator === "÷") {
+            setMemory(memory / parseFloat(value));
+          }
+          handleHistory(operator, value, memory);
+        } else {
+          setMemory(parseFloat(value));
+        }
+        setValue("0");
+        setOperator(content);
+        return;
+      }
+      case ",": {
+        if (value.includes(".")) return;
+        setValue(value + ".");
+        return;
+      }
+      case "=": {
+        if (!operator) return;
         if (operator === "+") {
-          setMemory(memory + parseFloat(value));
+          setValue((memory + parseFloat(value)).toString());
         } else if (operator === "−") {
-          setMemory(memory - parseFloat(value));
+          setValue((memory - parseFloat(value)).toString());
         } else if (operator === "×") {
-          setMemory(memory * parseFloat(value));
+          setValue((memory * parseFloat(value)).toString());
         } else if (operator === "÷") {
-          setMemory(memory / parseFloat(value));
+          setValue((memory / parseFloat(value)).toString());
         }
         handleHistory(operator, value, memory);
-      } else {
-        setMemory(parseFloat(value));
+        setMemory(null);
+        setOperator(null);
+        return;
       }
-      setValue("0");
-      setOperator("÷");
-      return;
     }
-
-    if (content === "×") {
-      if (operator !== null) {
-        if (operator === "+") {
-          setMemory(memory + parseFloat(value));
-        } else if (operator === "−") {
-          setMemory(memory - parseFloat(value));
-        } else if (operator === "×") {
-          setMemory(memory * parseFloat(value));
-        } else if (operator === "÷") {
-          setMemory(memory / parseFloat(value));
-        }
-        handleHistory(operator, value, memory);
-      } else {
-        setMemory(parseFloat(value));
-      }
-      setValue("0");
-      setOperator("×");
-      return;
-    }
-
-    if (content === "−") {
-      if (operator !== null) {
-        if (operator === "+") {
-          setMemory(memory + parseFloat(value));
-        } else if (operator === "−") {
-          setMemory(memory - parseFloat(value));
-        } else if (operator === "×") {
-          setMemory(memory * parseFloat(value));
-        } else if (operator === "÷") {
-          setMemory(memory / parseFloat(value));
-        }
-        handleHistory(operator, value, memory);
-      } else {
-        setMemory(parseFloat(value));
-      }
-      setValue("0");
-      setOperator("−");
-      return;
-    }
-
-    if (content === "+") {
-      if (operator !== null) {
-        if (operator === "+") {
-          setMemory(memory + parseFloat(value));
-        } else if (operator === "−") {
-          setMemory(memory - parseFloat(value));
-        } else if (operator === "×") {
-          setMemory(memory * parseFloat(value));
-        } else if (operator === "÷") {
-          setMemory(memory / parseFloat(value));
-        }
-        handleHistory(operator, value, memory);
-      } else {
-        setMemory(parseFloat(value));
-      }
-      setValue("0");
-      setOperator("+");
-      return;
-    }
-
-    if (content === ",") {
-      if (value.includes(".")) return;
-      setValue(value + ".");
-      return;
-    }
-
-    if (content === "=") {
-      if (!operator) return;
-      if (operator === "+") {
-        setValue((memory + parseFloat(value)).toString());
-      } else if (operator === "−") {
-        setValue((memory - parseFloat(value)).toString());
-      } else if (operator === "×") {
-        setValue((memory * parseFloat(value)).toString());
-      } else if (operator === "÷") {
-        setValue((memory / parseFloat(value)).toString());
-      }
-      handleHistory(operator, value, memory);
-      setMemory(null);
-      setOperator(null);
-      return;
-    }
-
-    // switch (content) {
-    //   case "AC": {
-    //     setValue("0");
-    //     setMemory(null);
-    //     setOperator(null);
-    //     setHistory(null);
-    //     break;
-    //   }
-    //   case "±": {
-    //     setValue((-number).toString());
-    //     setHistory(-number);
-    //     break;
-    //   }
-    //   case "÷": {
-    //     if (operator !== null) {
-    //       if (operator === "+") {
-    //         setMemory(memory + parseFloat(value));
-    //       } else if (operator === "−") {
-    //         setMemory(memory - parseFloat(value));
-    //       } else if (operator === "×") {
-    //         setMemory(memory * parseFloat(value));
-    //       } else if (operator === "÷") {
-    //         setMemory(memory / parseFloat(value));
-    //       }
-    //       handleHistory(operator, value, memory);
-    //     } else {
-    //       setMemory(parseFloat(value));
-    //     }
-    //     setValue("0");
-    //     setOperator("÷");
-    //     break;
-    //   }
-    //   case "×": {
-    //     if (operator !== null) {
-    //       if (operator === "+") {
-    //         setMemory(memory + parseFloat(value));
-    //       } else if (operator === "−") {
-    //         setMemory(memory - parseFloat(value));
-    //       } else if (operator === "×") {
-    //         setMemory(memory * parseFloat(value));
-    //       } else if (operator === "÷") {
-    //         setMemory(memory / parseFloat(value));
-    //       }
-    //       handleHistory(operator, value, memory);
-    //     } else {
-    //       setMemory(parseFloat(value));
-    //     }
-    //     setValue("0");
-    //     setOperator("×");
-    //     break;
-    //   }
-    //   case "−": {
-    //     if (operator !== null) {
-    //       if (operator === "+") {
-    //         setMemory(memory + parseFloat(value));
-    //       } else if (operator === "−") {
-    //         setMemory(memory - parseFloat(value));
-    //       } else if (operator === "×") {
-    //         setMemory(memory * parseFloat(value));
-    //       } else if (operator === "÷") {
-    //         setMemory(memory / parseFloat(value));
-    //       }
-    //       handleHistory(operator, value, memory);
-    //     } else {
-    //       setMemory(parseFloat(value));
-    //     }
-    //     setValue("0");
-    //     setOperator("−");
-    //     break;
-    //   }
-    //   case "+": {
-    //     if (operator !== null) {
-    //       if (operator === "+") {
-    //         setMemory(memory + parseFloat(value));
-    //       } else if (operator === "−") {
-    //         setMemory(memory - parseFloat(value));
-    //       } else if (operator === "×") {
-    //         setMemory(memory * parseFloat(value));
-    //       } else if (operator === "÷") {
-    //         setMemory(memory / parseFloat(value));
-    //       }
-    //       handleHistory(operator, value, memory);
-    //     } else {
-    //       setMemory(parseFloat(value));
-    //     }
-    //     setValue("0");
-    //     setOperator("+");
-    //     break;
-    //   }
-    //   case ",": {
-    //     if (value.includes(".")) break;
-    //     setValue(value + ".");
-    //     break;
-    //   }
-    //   case "=": {
-    //     if (!operator) break;
-    //     if (operator === "+") {
-    //       setValue((memory + parseFloat(value)).toString());
-    //     } else if (operator === "−") {
-    //       setValue((memory - parseFloat(value)).toString());
-    //     } else if (operator === "×") {
-    //       setValue((memory * parseFloat(value)).toString());
-    //     } else if (operator === "÷") {
-    //       setValue((memory / parseFloat(value)).toString());
-    //     }
-    //     handleHistory(operator, value, memory);
-    //     setMemory(null);
-    //     setOperator(null);
-    //     break;
-    //   }
-    // }
 
     if (value[value.length - 1] === ".") {
       setValue(value + content);
@@ -257,7 +86,7 @@ export const Calculator = () => {
   };
 
   return (
-    <div className="Calculator">
+    <div className="calculator">
       <div className="display">{history}</div>
       <div className="display">{utils(value)}</div>
       <div className="buttons">
