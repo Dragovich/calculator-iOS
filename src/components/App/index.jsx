@@ -17,6 +17,18 @@ export const Calculator = () => {
     }
   }
 
+  const handleOperation = (operator, value) => {
+    if (operator === "+") {
+      setValue((memory + parseFloat(value)).toString());
+    } else if (operator === "−") {
+      setValue((memory - parseFloat(value)).toString());
+    } else if (operator === "×") {
+      setValue((memory * parseFloat(value)).toString());
+    } else if (operator === "÷") {
+      setValue((memory / parseFloat(value)).toString());
+    }
+  }
+
   const handleButtonPress = content => () => {
     const number = parseFloat(value);
 
@@ -25,7 +37,7 @@ export const Calculator = () => {
         setValue("0");
         setMemory(null);
         setOperator(null);
-        setHistory(null);
+        setHistory(" ");
         return;
       }
       case "±": {
@@ -38,15 +50,7 @@ export const Calculator = () => {
       case "−":
       case "+": {
         if (operator !== null) {
-          if (operator === "+") {
-            setMemory(memory + parseFloat(value));
-          } else if (operator === "−") {
-            setMemory(memory - parseFloat(value));
-          } else if (operator === "×") {
-            setMemory(memory * parseFloat(value));
-          } else if (operator === "÷") {
-            setMemory(memory / parseFloat(value));
-          }
+          handleOperation(operator, value);
           handleHistory(operator, value, memory);
         } else {
           setMemory(parseFloat(value));
@@ -62,15 +66,7 @@ export const Calculator = () => {
       }
       case "=": {
         if (!operator) return;
-        if (operator === "+") {
-          setValue((memory + parseFloat(value)).toString());
-        } else if (operator === "−") {
-          setValue((memory - parseFloat(value)).toString());
-        } else if (operator === "×") {
-          setValue((memory * parseFloat(value)).toString());
-        } else if (operator === "÷") {
-          setValue((memory / parseFloat(value)).toString());
-        }
+        handleOperation(operator, value);
         handleHistory(operator, value, memory);
         setMemory(null);
         setOperator(null);
@@ -87,10 +83,10 @@ export const Calculator = () => {
 
   return (
     <div className="calculator">
-      <div className="display">{history}</div>
+      <div className="history">{history !== " " ? history : 0}</div>
       <div className="display">{utils(value)}</div>
       <div className="buttons">
-        <Button onButtonClick={handleButtonPress} content="AC" operationType="function"/>
+        <Button className="button" onButtonClick={handleButtonPress} content="AC" operationType="function"/>
         <Button onButtonClick={handleButtonPress} content="±" operationType="function"/>
         <Button
           onButtonClick={() => {

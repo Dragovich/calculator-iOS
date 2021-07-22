@@ -3,15 +3,57 @@
     border-radius: 50px;
     color: #fff;
     padding: 20px;
-    position: relative;
-    width: 563px;
 }
 
-.display {
-    font-size: 130px;
+@media (min-width: 768px) {
+    .calculator {
+        display: block;
+        margin: 0 auto;
+        width: 33%;
+    }
+}
+
+@media (max-width: 767px) {
+    .calculator {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1550px) {
+    .history {
+        font-size: 52px;
+    }
+    .display {
+        font-size: 124px;
+    }
+}
+
+@media only screen and (max-width: 1549px) {
+    .history {
+        font-size: 42px;
+    }
+    .display {
+        font-size: 64px;
+    }
+}
+
+
+.history {
     font-weight: 300;
     margin-bottom: 20px;
     text-align: right;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.display {
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-align: right;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
 }
 
 .buttons {
@@ -21,3 +63,8 @@
     grid-template-rows: repeat(5, 1fr);
 }
 
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
