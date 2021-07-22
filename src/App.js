@@ -1,11 +1,10 @@
 import React from 'react'
+import Calculator from "./components/App";
 
 const App = () => {
   return (
-    <h1>
-      Hello Webpack React
-    </h1>
+    <Calculator/>
   )
 }
 
-export default App
+export default App;
