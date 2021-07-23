@@ -14,6 +14,9 @@
         height: 110px;
         width: 110px;
     }
+    .button.zero {
+        padding-left: 18%;
+    }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1549px) {
@@ -21,6 +24,9 @@
         font-size: 42px;
         height: 80px;
         width: 80px;
+    }
+    .button.zero {
+        padding-left: 17%;
     }
 }
 
@@ -31,6 +37,9 @@
         height: 64px;
         width: 64px;
     }
+    .button.zero {
+        padding-left: 16%;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
@@ -38,6 +47,9 @@
         font-size: 24px;
         height: 48px;
         width: 48px;
+    }
+    .button.zero {
+        padding-left: 16%;
     }
 }
 
@@ -47,13 +59,19 @@
         height: 84px;
         width: 84px;
     }
+    .button.zero {
+        padding-left: 16%;
+    }
 }
 
 @media only screen and (max-width: 480px) {
     .button {
-        font-size: 45px;
+        font-size: 36px;
         height: 72px;
         width: 72px;
+    }
+    .button.zero {
+        padding-left: 15%;
     }
 }
 
@@ -67,12 +85,12 @@
 }
 
 .button.zero {
-    width: 75%;
+    width: 100%;
     grid-column: 1 / span 2;
     border-radius: 57.5px;
     position: relative;
     justify-content: flex-start;
-    padding-left: 43px;
+    box-sizing: border-box;
 }
 
 .button.nothing {
