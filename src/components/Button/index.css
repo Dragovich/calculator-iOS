@@ -8,18 +8,18 @@
     transition: filter 0.3s ease-in;
 }
 
-@media only screen and (min-width: 1550px) {
+@media only screen and (min-width: 1500px) {
     .button {
         font-size: 52px;
         height: 110px;
         width: 110px;
     }
     .button.zero {
-        padding-left: 18%;
+        padding-left: 16%;
     }
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1549px) {
+@media only screen and (min-width: 1200px) and (max-width: 1499px) {
     .button {
         font-size: 42px;
         height: 80px;
@@ -53,7 +53,18 @@
     }
 }
 
-@media only screen and (min-width: 481px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+    .button {
+        font-size: 45px;
+        height: 84px;
+        width: 84px;
+    }
+    .button.zero {
+        padding-left: 14%;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 599px) {
     .button {
         font-size: 45px;
         height: 84px;
@@ -71,7 +82,7 @@
         width: 72px;
     }
     .button.zero {
-        padding-left: 15%;
+        padding-left: 16%;
     }
 }
 
