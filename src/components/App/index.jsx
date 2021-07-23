@@ -77,7 +77,7 @@ export const Calculator = () => {
     if (value[value.length - 1] === ".") {
       setValue(value + content);
     } else {
-      setValue(parseFloat(number + content).toString());
+      setValue(parseFloat(value + content).toString());
     }
   };
 
